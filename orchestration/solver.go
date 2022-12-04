@@ -68,11 +68,14 @@ func dispatchDay(solver Solver, path string) Result {
 	}
 }
 
-func Dispatch(solvers map[int]Solver, path string, from int, to int) map[int]Result {
+func Dispatch(solvers []Solver, path string, from int, to int) (map[int]Result, error) {
+	if from-1 < 0 || to-1 >= len(solvers) {
+		return nil, fmt.Errorf("dispatch out of range")
+	}
 	result := make(map[int]Result)
 	for i := from; i <= to; i++ {
 		fileName := fmt.Sprintf("%s/%02d.txt", path, i)
-		result[i] = dispatchDay(solvers[i], fileName)
+		result[i] = dispatchDay(solvers[i-1], fileName)
 	}
-	return result
+	return result, nil
 }
