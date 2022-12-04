@@ -62,8 +62,7 @@ func (d *day04) A() (string, error) {
 func (d *day04) B() (string, error) {
 	count := 0
 	for _, p := range d.pairs {
-		if (p[0].from >= p[1].from && p[0].from <= p[1].to) || (p[0].to >= p[1].from && p[0].to <= p[1].to) ||
-			(p[1].from >= p[0].from && p[1].from <= p[0].to) || (p[1].to >= p[0].from && p[1].to <= p[0].to) {
+		if p[0].from <= p[1].to && p[0].to >= p[1].from {
 			count++
 		}
 	}
