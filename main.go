@@ -11,6 +11,7 @@ import (
 	"github.com/jschaefer-io/AdventOfCode2022/day05"
 	"github.com/jschaefer-io/AdventOfCode2022/day06"
 	"github.com/jschaefer-io/AdventOfCode2022/day07"
+	"github.com/jschaefer-io/AdventOfCode2022/day08"
 	"github.com/jschaefer-io/AdventOfCode2022/orchestration"
 )
 
@@ -23,8 +24,9 @@ func main() {
 		day05.Solver(),
 		day06.Solver(),
 		day07.Solver(),
+		day08.Solver(),
 	}
-	results, err := orchestration.Dispatch(days, "./inputs", 1, 7)
+	results, err := orchestration.Dispatch(days, "./inputs", 1, 8)
 	if err != nil {
 		log.Fatalln(err)
 	}
