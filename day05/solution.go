@@ -66,7 +66,7 @@ func (d *day05) Setup(data string) error {
 	return nil
 }
 
-func (d *day05) executeWithStack(handler func(from *stack, to *stack, in instruction) error) (string, error) {
+func (d *day05) executeWithHandler(handler func(from *stack, to *stack, in instruction) error) (string, error) {
 	stacks := d.getStacks()
 	for _, in := range d.instructions {
 		err := handler(stacks[in.from-1], stacks[in.to-1], in)
@@ -86,7 +86,7 @@ func (d *day05) executeWithStack(handler func(from *stack, to *stack, in instruc
 }
 
 func (d *day05) A() (string, error) {
-	return d.executeWithStack(func(from *stack, to *stack, in instruction) error {
+	return d.executeWithHandler(func(from *stack, to *stack, in instruction) error {
 		for i := 0; i < in.count; i++ {
 			val, err := from.pop()
 			if err != nil {
@@ -99,7 +99,7 @@ func (d *day05) A() (string, error) {
 }
 
 func (d *day05) B() (string, error) {
-	return d.executeWithStack(func(from *stack, to *stack, in instruction) error {
+	return d.executeWithHandler(func(from *stack, to *stack, in instruction) error {
 		crane := &stack{
 			items: make([]rune, 0),
 		}
