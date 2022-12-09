@@ -51,7 +51,7 @@ func (d *day09) A() (string, error) {
 	for _, move := range d.moves {
 		head.x += move.x
 		head.y += move.y
-		tail.moveTowards(*head, 1)
+		tail.moveTowards(*head)
 		tailVisits[*tail] = struct{}{}
 	}
 	return strconv.Itoa(len(tailVisits)), nil
@@ -66,7 +66,7 @@ func (d *day09) B() (string, error) {
 		rope[0].x += move.x
 		rope[0].y += move.y
 		for i := 1; i < segmentCount; i++ {
-			rope[i].moveTowards(rope[i-1], 1)
+			rope[i].moveTowards(rope[i-1])
 		}
 		tailVisits[rope[segmentCount-1]] = struct{}{}
 	}

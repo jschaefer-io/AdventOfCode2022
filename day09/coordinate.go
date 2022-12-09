@@ -9,9 +9,9 @@ type coordinate struct {
 	y int
 }
 
-func (c *coordinate) moveTowards(target coordinate, maxDistance int) {
-	distanceX := int(math.Abs(float64(target.x-c.x))) - maxDistance
-	distanceY := int(math.Abs(float64(target.y-c.y))) - maxDistance
+func (c *coordinate) moveTowards(target coordinate) {
+	distanceX := int(math.Abs(float64(target.x-c.x))) - 1
+	distanceY := int(math.Abs(float64(target.y-c.y))) - 1
 
 	offsetX := distanceX
 	offsetY := distanceY
