@@ -82,7 +82,7 @@ func (d *day10) B() (string, error) {
 		pixel := pos % 40
 
 		if math.Abs(float64(pixel-x)) <= 1 {
-			screen[row][pixel] = '0'
+			screen[row][pixel] = '■'
 		} else {
 			screen[row][pixel] = ' '
 		}
