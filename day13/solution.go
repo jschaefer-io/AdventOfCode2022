@@ -2,6 +2,7 @@ package day13
 
 import (
 	"fmt"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -51,5 +52,37 @@ func (d *day13) A() (string, error) {
 }
 
 func (d *day13) B() (string, error) {
-	return "", nil
+	list := make([]signal, 0)
+	first, err := parseSignal("[[2]]")
+	if err != nil {
+		return "", err
+	}
+	second, err := parseSignal("[[6]]")
+	if err != nil {
+		return "", err
+	}
+	list = append(list, first, second)
+	for _, pair := range d.pairs {
+		list = append(list, pair[0], pair[1])
+	}
+	sort.Slice(list, func(i, j int) bool {
+		sortRes, _ := list[i].compare(list[j])
+		return sortRes
+	})
+
+	var firstIndex int
+	var secondIndex int
+	for i, item := range list {
+		if item.String() == first.String() {
+			firstIndex = i + 1
+		} else if item.String() == second.String() {
+			secondIndex = i + 1
+		}
+	}
+
+	if firstIndex == 0 || secondIndex == 0 {
+		return "", fmt.Errorf("reference signals not found")
+	}
+
+	return strconv.Itoa(firstIndex * secondIndex), nil
 }
