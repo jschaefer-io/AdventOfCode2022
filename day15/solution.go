@@ -54,7 +54,7 @@ func (d *day15) Setup(data string) error {
 }
 
 func (d *day15) A() (string, error) {
-	yPos := 10
+	yPos := 2000000
 	check := make(map[position]struct{})
 	for sensor, beacon := range d.pairs {
 		distance := sensor.distance(beacon)
