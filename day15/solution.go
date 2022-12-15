@@ -24,29 +24,23 @@ func (p position) distance(pos position) int {
 }
 
 type day15 struct {
-	area    map[position]rune
-	pairs   map[position]position
-	beacons []position
-	sensors []position
+	area  map[position]rune
+	pairs map[position]position
 }
 
 func (d *day15) Setup(data string) error {
 	d.pairs = make(map[position]position)
 	d.area = make(map[position]rune)
-	d.beacons = make([]position, 0)
-	d.sensors = make([]position, 0)
 	exp := regexp.MustCompile("(|-)\\d+")
 	for _, line := range strings.Split(data, "\n") {
 		nums := exp.FindAllString(line, -1)
 		xS, _ := strconv.Atoi(nums[0])
 		yS, _ := strconv.Atoi(nums[1])
 		d.area[position{xS, yS}] = 'S'
-		d.sensors = append(d.sensors, position{xS, yS})
 
 		xB, _ := strconv.Atoi(nums[2])
 		yB, _ := strconv.Atoi(nums[3])
 		d.area[position{xB, yB}] = 'B'
-		d.beacons = append(d.beacons, position{xB, yB})
 
 		d.pairs[position{xS, yS}] = position{xB, yB}
 	}
